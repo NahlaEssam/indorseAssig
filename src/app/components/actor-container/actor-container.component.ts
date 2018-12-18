@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActorResponse } from '../../shared/models/actor';
 import { ActorService } from 'src/app/shared/services/actor/actor.service';
+import { ErrorService } from 'src/app/shared/services/error/error.service';
 @Component({
   selector: 'app-actor-container',
   templateUrl: './actor-container.component.html',
@@ -14,7 +15,7 @@ export class ActorContainerComponent implements OnInit {
   enableShowMore = true;
   append = true;
   searchText = '';
-  constructor(public actorService: ActorService) {
+  constructor(public actorService: ActorService , public errorService: ErrorService) {
     this.search();
   }
 
@@ -34,14 +35,14 @@ export class ActorContainerComponent implements OnInit {
       this.actorService.searchActors(this.page, searchText).subscribe(res => {
         this.successCallback(res);
       }, error => {
-        console.log(error);
+        this.errorCallback(error);
       });
     } else {
 
       this.actorService.getPopularActors(this.page).subscribe(res => {
         this.successCallback(res);
       }, error => {
-        console.log(error);
+        this.errorCallback(error);
       });
 
 
@@ -66,6 +67,10 @@ export class ActorContainerComponent implements OnInit {
     } else {
       this.enableShowMore = true;
     }
+  }
+
+  errorCallback(error: any) {
+    this.errorService.error.emit(error);
   }
 
 

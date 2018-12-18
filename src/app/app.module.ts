@@ -14,6 +14,7 @@ import { ActorContainerComponent } from './components/actor-container/actor-cont
 import { DetailedActorComponent } from './components/detailed-actor/detailed-actor.component';
 import { ActorComponent } from './components/actor/actor.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ActorContainerComponent,
     DetailedActorComponent,
     ActorComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

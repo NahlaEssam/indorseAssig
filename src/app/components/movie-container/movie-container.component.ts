@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import { MoviesResponse } from '../../shared/models/movie';
+import { ErrorService } from 'src/app/shared/services/error/error.service';
 
 @Component({
   selector: 'app-movie-container',
@@ -15,7 +16,7 @@ export class MovieContainerComponent implements OnInit {
   enableShowMore = true;
   append = true;
   searchText = '';
-  constructor(public movieService: MovieService) {
+  constructor(public movieService: MovieService, public errorService: ErrorService) {
     this.search();
   }
 
@@ -40,7 +41,7 @@ export class MovieContainerComponent implements OnInit {
       this.movieService.searchMovies(this.page, searchText).subscribe(res => {
         this.successCallback(res);
       }, error => {
-        console.log(error);
+        this.errorCallback(error);
       });
     } else {
       if (this.trending) {
@@ -48,13 +49,13 @@ export class MovieContainerComponent implements OnInit {
           this.successCallback(res);
 
         }, error => {
-          console.log(error);
+          this.errorCallback(error);
         });
       } else {
         this.movieService.getPopularMovies(this.page).subscribe(res => {
           this.successCallback(res);
         }, error => {
-          console.log(error);
+          this.errorCallback(error);
         });
       }
 
@@ -68,6 +69,7 @@ export class MovieContainerComponent implements OnInit {
   }
 
   successCallback(res: MoviesResponse) {
+
     if (this.append && this.movies) {
       this.movies.results = this.movies.results.concat(res.results);
     } else {
@@ -79,6 +81,10 @@ export class MovieContainerComponent implements OnInit {
     } else {
       this.enableShowMore = true;
     }
+  }
+
+  errorCallback(error: any) {
+    this.errorService.error.emit(error);
   }
 
 }

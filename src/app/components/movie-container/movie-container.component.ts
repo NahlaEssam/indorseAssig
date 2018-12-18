@@ -14,5 +14,8 @@ export class MovieContainerComponent implements OnInit {
 
   ngOnInit() {
   }
+  search(searchText: string) {
+    console.log(searchText);
+  }
 
 }

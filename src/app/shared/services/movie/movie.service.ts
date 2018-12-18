@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MoviesResponse } from '../../models/movie';
+import { MoviesResponse, MovieDetails } from '../../models/movie';
 import { BASE } from '../baseUrl';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-  BaseUrl = 'https://reqres.in/api';
   constructor(private http: HttpClient) { }
 
   getPopularMovies(page: number): Observable<MoviesResponse> {
@@ -21,9 +20,9 @@ export class MovieService {
     return this.http.get<MoviesResponse>(url);
   }
 
-  getMovie(movieId: number): Observable<MoviesResponse> {
+  getMovie(movieId: number): Observable<MovieDetails> {
     const url = BASE.constructUrl(`movie/${movieId}`, '');
-    return this.http.get<MoviesResponse>(url);
+    return this.http.get<MovieDetails>(url);
   }
 
   searchMovies(page: number, searchText: string): Observable<MoviesResponse> {

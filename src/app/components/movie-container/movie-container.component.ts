@@ -9,13 +9,76 @@ import { MoviesResponse } from '../../shared/models/movie';
 })
 export class MovieContainerComponent implements OnInit {
 
+  page = 1;
+  movies: MoviesResponse;
+  trending = false;
+  enableShowMore = true;
+  append = true;
+  searchText = '';
   constructor(public movieService: MovieService) {
+    this.search();
   }
 
   ngOnInit() {
   }
-  search(searchText: string) {
-    console.log(searchText);
+
+  searchTextChange(searchText: string) {
+    this.page = 1;
+    this.append = false;
+    this.searchText = searchText;
+    this.search();
+  }
+  searchTypeChange() {
+    this.page = 1;
+    this.trending = !this.trending;
+    this.append = false;
+    this.search();
+  }
+  search() {
+    const searchText = this.searchText;
+    if (searchText) {
+      this.movieService.searchMovies(this.page, searchText).subscribe(res => {
+        this.successCallback(res);
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      if (this.trending) {
+        this.movieService.getTrendingMovies().subscribe(res => {
+          this.successCallback(res);
+
+        }, error => {
+          console.log(error);
+        });
+      } else {
+        this.movieService.getPopularMovies(this.page).subscribe(res => {
+          this.successCallback(res);
+        }, error => {
+          console.log(error);
+        });
+      }
+
+    }
+  }
+
+  showMore() {
+    this.page += 1;
+    this.append = true;
+    this.search();
+  }
+
+  successCallback(res: MoviesResponse) {
+    if (this.append && this.movies) {
+      this.movies.results = this.movies.results.concat(res.results);
+    } else {
+      this.movies = res;
+    }
+
+    if (this.trending || res.total_pages <= this.page) {
+      this.enableShowMore = false;
+    } else {
+      this.enableShowMore = true;
+    }
   }
 
 }

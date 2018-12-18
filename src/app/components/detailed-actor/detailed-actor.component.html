@@ -1,3 +1,11 @@
-<p>
-  detailed-actor works!
-</p>
+<div class="" >
+    <div *ngIf="actor">
+        <div class="" >
+            {{actor.name}}
+         </div>
+        <div class="">
+           <img class="movie-img" [src]="actor.profile_path?'https://image.tmdb.org/t/p/w500'+actor.profile_path:''" />
+        </div>
+       
+    </div>
+</div>

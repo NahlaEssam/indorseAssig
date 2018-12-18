@@ -11,6 +11,7 @@ import { DetailedMovieComponent } from './components/detailed-movie/detailed-mov
 import { ActorContainerComponent } from './components/actor-container/actor-container.component';
 import { DetailedActorComponent } from './components/detailed-actor/detailed-actor.component';
 import { ActorComponent } from './components/actor/actor.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ActorComponent } from './components/actor/actor.component';
     DetailedMovieComponent,
     ActorContainerComponent,
     DetailedActorComponent,
-    ActorComponent
+    ActorComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

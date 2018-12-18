@@ -1,7 +1,7 @@
 <div class="movie-component-container" >
     <div *ngIf="movie" title="{{movie.title}}">
-        <div class="movie-section">
-           <img class="movie-img" [src]="'https://image.tmdb.org/t/p/w500'+movie.poster_path" />
+        <div class="movie-section movie-img">
+           <img class="movie-img" [src]="movie.poster_path?'https://image.tmdb.org/t/p/w500'+movie.poster_path: ''" />
         </div>
         <div class="movie-section" >
            {{movie.title}}

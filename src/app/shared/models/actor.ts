@@ -18,6 +18,7 @@ export interface ActorDetails {
 /******popular actor and search actors response************ */
 export interface ActorResponse {
     page?: number;
+    results?: Actor[];
     total_results?: number;
     total_pages?: number;
 }

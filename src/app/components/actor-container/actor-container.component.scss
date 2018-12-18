@@ -1,0 +1,17 @@
+.movie-container{
+    padding: 15px;
+    height: calc(100% - 60px);
+    .movies{
+        display: flex;
+        height: calc(100% - 120px);
+        justify-content: space-between;
+        flex-wrap: wrap;
+        overflow: auto;
+        padding: 15px 0px 0px 0px;
+        .movie-item{
+            width: 30%;
+            height: 200px;
+            margin: 15px 0px;
+        }
+    }
+}

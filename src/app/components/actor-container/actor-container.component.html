@@ -1,3 +1,13 @@
-<p>
-  actor-container works!
-</p>
+<div class="movie-container">
+    <app-search (searchText)="searchTextChange($event)"></app-search>
+   
+    <div class="movies" *ngIf="actors"> 
+        <div class="movie-item" *ngFor="let actor of actors.results">
+            <app-actor [actor]="actor" [routerLink]="'/actor/'+actor.id"></app-actor>
+        </div>
+    </div>
+
+    <div (click)="showMore()" *ngIf="enableShowMore">
+        show more
+    </div>
+</div>

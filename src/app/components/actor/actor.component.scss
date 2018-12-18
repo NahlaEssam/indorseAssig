@@ -1,0 +1,14 @@
+.movie-component-container{
+    height: 100%;
+    .movie-img{
+        height: 150px;
+    }
+    .movie-section{
+        margin: 5px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+}

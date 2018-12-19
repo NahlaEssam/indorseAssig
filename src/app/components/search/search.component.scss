@@ -1,7 +1,10 @@
 .search-container{
     .search-input{
-        width: 90%;
-        margin: 5px calc(5% - 7px);
+        width: 99%;
+        margin: 15px 0px 7.5px 0px;
         padding: 5px;
+        border-radius: 5px;
+        border: solid 1px grey;
+        outline: none;
     }
 }

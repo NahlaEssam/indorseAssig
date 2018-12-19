@@ -16,6 +16,7 @@ export class ActorContainerComponent implements OnInit, OnDestroy {
   append = true;
   searchText = '';
   serviceCall: any;
+  placeholder = 'Search Actors';
   constructor(public actorService: ActorService , public errorService: ErrorService) {
     this.search();
   }

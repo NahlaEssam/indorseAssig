@@ -1,5 +1,9 @@
 .movie-component-container{
     height: 100%;
+    box-shadow: 1px 1px 13px 0px grey;
+    margin: 15px;
+    border-radius: 5px;
+    cursor: pointer;
     .movie-img{
         height: 150px;
     }

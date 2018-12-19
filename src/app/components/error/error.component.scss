@@ -1,0 +1,13 @@
+.error-container{
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    .error-msg{
+        width: 90%;
+        margin:22px auto;
+        background: white;
+        color: black;
+        border-radius: 5px;
+        padding: 15px;
+    }
+}

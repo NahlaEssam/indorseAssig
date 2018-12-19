@@ -1,4 +1,11 @@
 <div class="error-container" *ngIf="error">
-    error
-    {{error}}
+    
+    <div class="error-msg">
+            <div>
+                Service failed:
+            </div> 
+            <div>
+                {{error.status_message}}
+            </div>
+    </div>
 </div>

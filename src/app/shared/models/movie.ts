@@ -74,3 +74,60 @@ export interface Movie {
     video?: boolean;
     vote_average?: number;
 }
+
+/************** movie credit response**********************/
+export interface MovieCredit {
+    id?: number;
+    cast?: MovieCast[];
+    crew?: MovieCrew[];
+}
+
+export interface MovieCast {
+    cast_id?: number;
+    character?: string;
+    credit_id?: string;
+    gender?: number;
+    id?: number;
+    name?: string;
+    order?: number;
+    profile_path?: string;
+}
+
+export interface MovieCrew {
+    credit_id?: string;
+    department?: string;
+    gender?: number;
+    id?: number;
+    job?: string;
+    name?: string;
+    profile_path?: string;
+}
+
+
+/************** movie keywords**********************/
+export interface MovieKeywords {
+    id?: number;
+    keywords?: Keyword[];
+}
+
+export interface Keyword {
+    id?: number;
+    name?: string;
+}
+
+/*****************movie videos***************** */
+export interface MovieVideos {
+    id?: number;
+    results?: Video[];
+}
+
+export interface Video {
+    id?: string;
+    iso_639_1?: string;
+    iso_3166_1?: string;
+    key?: string;
+    name?: string;
+    site?: string;
+    size?: number;
+    type?: string;
+}

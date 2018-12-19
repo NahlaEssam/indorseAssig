@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ErrorService } from 'src/app/shared/services/error/error.service';
 import { ActorService } from 'src/app/shared/services/actor/actor.service';
-import { ActorDetails } from '../../shared/models/actor';
+import { ActorDetails, ActorImages, ActorMovieCredit } from '../../shared/models/actor';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, zip } from 'rxjs';
 
 @Component({
   selector: 'app-detailed-actor',
@@ -13,6 +14,8 @@ export class DetailedActorComponent implements OnInit, OnDestroy {
 
   actorId: number;
   actor: ActorDetails;
+  images: ActorImages;
+  actorMoviesCredit: ActorMovieCredit;
   private sub: any;
   constructor(public actorService: ActorService, public errorService: ErrorService, private route: ActivatedRoute) {
     this.sub = this.route.params.subscribe(params => {
@@ -29,11 +32,24 @@ export class DetailedActorComponent implements OnInit, OnDestroy {
   }
 
   getActor() {
-    this.actorService.getActor(this.actorId).subscribe(res => {
-      this.actor = res;
-    }, error => {
-      this.errorService.error.emit(error);
-    });
+    // this.actorService.getActor(this.actorId).subscribe(res => {
+    //   this.actor = res;
+    // }, error => {
+    //   this.errorService.error.emit(error);
+    // });
+
+    zip(this.actorService.getActor(this.actorId),
+      this.actorService.getActorImages(this.actorId),
+      this.actorService.getActorMovieCredit(this.actorId))
+      .subscribe((value: any) => {
+        if (value && value.length !== 0) {
+          this.actor = value[0];
+          this.images = value[1];
+          this.actorMoviesCredit = value[2];
+        }
+      }, error => {
+        this.errorService.error.emit(error);
+      });
   }
 
   ngOnDestroy() {

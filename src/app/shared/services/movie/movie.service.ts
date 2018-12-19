@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MoviesResponse, MovieDetails } from '../../models/movie';
+import { MoviesResponse, MovieDetails, MovieCredit, MovieKeywords, MovieVideos } from '../../models/movie';
 import { BASE } from '../baseUrl';
 
 @Injectable({
@@ -30,4 +30,18 @@ export class MovieService {
     return this.http.get<MoviesResponse>(url);
   }
 
+  getMovieCredit(movieId: number): Observable<MovieCredit> {
+    const url = BASE.constructUrl(`movie/${movieId}/credits`, '');
+    return this.http.get<MovieCredit>(url);
+  }
+
+  getMovieKeyword(movieId: number): Observable<MovieKeywords> {
+    const url = BASE.constructUrl(`movie/${movieId}/keywords`, '');
+    return this.http.get<MovieKeywords>(url);
+  }
+
+  getMovieVideos(movieId: number): Observable<MovieVideos> {
+    const url = BASE.constructUrl(`movie/${movieId}/videos`, '');
+    return this.http.get<MovieVideos>(url);
+  }
 }

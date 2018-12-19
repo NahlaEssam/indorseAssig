@@ -1,5 +1,5 @@
 <div class="header-container">
     <div class="header-item" *ngFor="let item of headerItems" [routerLinkActive]="['active-item']" >
-        <div [routerLink]="item.url">{{item.title}}</div>
+        <div class="item" [routerLink]="item.url">{{item.title}}</div>
     </div>
 </div>

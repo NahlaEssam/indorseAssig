@@ -1,13 +1,15 @@
-<div class="movie-container">
-    <app-search (searchText)="searchTextChange($event)"></app-search>
+<div class="actor-container">
+    <app-search (searchText)="searchTextChange($event)" [placeholder]="placeholder"></app-search>
    
-    <div class="movies" *ngIf="actors"> 
-        <div class="movie-item" *ngFor="let actor of actors.results">
+    <div class="actors" *ngIf="actors"> 
+        <div class="actor-item" *ngFor="let actor of actors.results">
             <app-actor [actor]="actor" [routerLink]="'/actor/'+actor.id"></app-actor>
         </div>
     </div>
 
-    <div (click)="showMore()" *ngIf="enableShowMore">
-        show more
-    </div>
+    <div class="show-more" (click)="showMore()" *ngIf="enableShowMore">
+            <div class="show-more-text">
+                show more
+            </div>
+        </div>
 </div>

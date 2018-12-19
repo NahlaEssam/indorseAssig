@@ -1,17 +1,38 @@
 .movie-container{
-    padding: 15px;
+    padding: 0px 15px;
     height: calc(100% - 60px);
+    .trend-option{
+        margin: 1px 0px 5px 0px;
+        .option-text{
+            padding: 0px 5px;
+        }
+        .option-input{
+            cursor: pointer;
+        }
+    }
     .movies{
         display: flex;
-        height: calc(100% - 120px);
+        height: calc(100% - 130px);
         justify-content: space-between;
         flex-wrap: wrap;
         overflow: auto;
-        padding: 15px 0px 0px 0px;
         .movie-item{
             width: 30%;
             height: 200px;
-            margin: 15px 0px;
+            margin: 10px 0px;
         }
+    }
+    .show-more{
+        display: flex;
+        align-items: center;
+        height: 55px;
+        .show-more-text{
+            cursor: pointer;
+            border-radius: 42px;
+            box-shadow: 1px 1px 4px 0px grey;
+            padding: 5px 15px;
+            
+        }
+
     }
 }

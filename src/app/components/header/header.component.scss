@@ -12,5 +12,8 @@
     .header-item:hover, .active-item{
         box-shadow: 1px 1px 6px 0px grey;
     }
+    .item:focus {
+        outline: none;
+    }
     
 }

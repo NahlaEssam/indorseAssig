@@ -1,11 +1,97 @@
-<div class="" >
-    <div *ngIf="actor">
-        <div class="" >
-            {{actor.name}}
-         </div>
-        <div class="">
-           <img class="movie-img" [src]="actor.profile_path?'https://image.tmdb.org/t/p/w500'+actor.profile_path:''" />
+<div class="actor-details">
+    <div class="" *ngIf="actor">
+        <div class="section">
+            <div class="actor-poster">
+                <img class="actor-img actor-poster" [src]="actor.profile_path?'https://image.tmdb.org/t/p/w500'+actor.profile_path:''" />
+            </div>
+            <div class="inner-section">
+                <span class="bold">Name:</span>
+                <span class="text">{{actor.name}}</span>
+            </div>
+            <div class="inner-section">
+                <span class="bold">Biography: </span>
+                <span class="text"> {{actor.biography}} </span>
+            </div>
+            <div class="inner-section">
+                <span class="bold">Birth date: </span>
+                <span class="text"> {{actor.birthday}} </span>
+            </div>
         </div>
-       
+
+        <div class="section">
+            <div class="title">
+                Actor Profiles
+            </div>
+            <div class="flex-container">
+                <div class="flex-member" *ngFor="let member of images.profiles">
+                    <div class="member-img">
+                        <img class="member-img" [src]="member.file_path?'https://image.tmdb.org/t/p/w500'+member.file_path:''" />
+                    </div>
+                    <div>
+                        <span class="bold">Vote count: </span>
+                        <span class="text"> {{member.vote_count}} </span>
+                    </div>
+                    <div>
+                        <span class="bold">Vote average: </span>
+                        <span class="text"> {{member.vote_average}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" *ngIf="actorMoviesCredit">
+            <div class="title">
+                Movie Credit
+            </div>
+            <div class="flex-container">
+                <div class="flex-member" *ngFor="let member of actorMoviesCredit.cast">
+                    <div class="member-img">
+                        <img class="member-img" [src]="member.poster_path?'https://image.tmdb.org/t/p/w500'+member.poster_path:''" />
+                    </div>
+                    <div>
+                        <span class="bold">Character: </span>
+                        <span class="text"> {{member.character}} </span>
+                    </div>
+                    <div>
+                        <span class="bold">Title: </span>
+                        <span class="text"> {{member.title}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+            <div class="section">
+                <div class="title">
+                    Keywords
+                </div>
+                <div class="flex-container">
+                    <div class="flex-member" *ngFor="let keyword of keywords.keywords">
+                        <div>
+                            {{keyword.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section">
+                <div class="title">
+                    Videos
+                </div>
+                <div class="flex-container">
+                    <div class="flex-member" *ngFor="let video of videos.results">
+                        <div class="inner-section">
+                            <span class="bold">Video Name: </span>
+                            <span class="text"> {{video.name}} </span>
+                        </div>
+                        <div class="inner-section">
+                            <span class="bold">Video Site: </span>
+                            <span class="text"> {{video.site}} </span>
+                        </div>
+    
+                    </div>
+                </div>
+            </div> -->
+
+
     </div>
 </div>

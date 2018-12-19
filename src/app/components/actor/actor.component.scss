@@ -1,10 +1,15 @@
-.movie-component-container{
+.actor-component-container{
     height: 100%;
-    .movie-img{
+    box-shadow: 1px 1px 13px 0px grey;
+    margin: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    .actor-img{
+        margin: 15px;
         height: 150px;
     }
-    .movie-section{
-        margin: 5px;
+    .actor-section{
+        margin: 15px;
         text-align: center;
         white-space: nowrap;
         overflow: hidden;

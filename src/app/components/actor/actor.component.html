@@ -1,9 +1,9 @@
-<div class="movie-component-container" >
+<div class="actor-component-container" >
     <div *ngIf="actor" title="{{actor.name}}">
-        <div class="movie-section movie-img">
-           <img class="movie-img" [src]="actor.profile_path?'https://image.tmdb.org/t/p/w500'+actor.profile_path:''" />
+        <div class="actor-section actor-img">
+           <img class="actor-img" [src]="actor.profile_path?'https://image.tmdb.org/t/p/w500'+actor.profile_path:''" />
         </div>
-        <div class="movie-section" >
+        <div class="actor-section" >
            {{actor.name}}
         </div>
     </div>

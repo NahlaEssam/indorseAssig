@@ -1,14 +1,20 @@
 <div class="movie-container">
-    <app-search (searchText)="searchTextChange($event)"></app-search>
-    Trending Movies
-    <input type="checkbox" [(checked)]="trending" (change)="searchTypeChange()" />
+    <app-search (searchText)="searchTextChange($event)" [placeholder]="placeholder"></app-search>
+    
+    <div class="trend-option">
+        <input class="option-input" type="checkbox" [(checked)]="trending" (change)="searchTypeChange()" />
+        <span class="option-text">Trending Movies</span>
+    </div>
+
     <div class="movies" *ngIf="movies"> 
         <div class="movie-item" *ngFor="let movie of movies.results">
             <app-movie [movie]="movie" [routerLink]="'/movie/'+movie.id"></app-movie>
         </div>
     </div>
 
-    <div (click)="showMore()" *ngIf="enableShowMore">
-        show more
+    <div class="show-more" (click)="showMore()" *ngIf="enableShowMore">
+        <div class="show-more-text">
+            show more
+        </div>
     </div>
 </div>

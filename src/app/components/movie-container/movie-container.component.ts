@@ -17,6 +17,7 @@ export class MovieContainerComponent implements OnInit, OnDestroy {
   append = true;
   searchText = '';
   serviceCall: any;
+  placeholder = 'Search Movies';
   constructor(public movieService: MovieService, public errorService: ErrorService) {
     this.search();
   }

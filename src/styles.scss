@@ -7,3 +7,46 @@ html,body {
     background: black;
     color: white;
 }
+
+.section{
+    margin: 15px 0px;
+    border-bottom: solid 1px grey;
+    .inner-section{
+        margin: 15px 0px;
+    }
+    .bold{
+        font-weight: bold;
+    }
+    .text{
+        margin: 0px 10px;
+    }
+    .title{
+        font-size: 20px;
+    }
+}
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    .flex-member{
+        width: 20%;
+        margin: 15px;
+        padding: 5px;
+        text-align: center;
+        
+        .member-img{
+            height: 50px;
+            border-radius: 5px;
+            margin: 5px 0px 15px 0px;
+        }
+    }
+    .pointer{
+        cursor: pointer;
+    }
+}
+.component-section{
+    margin: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

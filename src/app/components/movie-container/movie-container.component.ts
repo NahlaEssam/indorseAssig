@@ -29,6 +29,7 @@ export class MovieContainerComponent implements OnInit, OnDestroy {
     this.page = 1;
     this.append = false;
     this.searchText = searchText;
+    this.trending = false;
     this.search();
   }
   searchTypeChange() {

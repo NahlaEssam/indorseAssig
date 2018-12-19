@@ -44,7 +44,7 @@
                 Movie Credit
             </div>
             <div class="flex-container">
-                <div class="flex-member" *ngFor="let member of actorMoviesCredit.cast">
+                <div class="flex-member pointer" *ngFor="let member of actorMoviesCredit.cast" [routerLink]="'/movie/'+member.id">
                     <div class="member-img">
                         <img class="member-img" [src]="member.poster_path?'https://image.tmdb.org/t/p/w500'+member.poster_path:''" />
                     </div>
@@ -59,39 +59,5 @@
                 </div>
             </div>
         </div>
-        <!--
-            <div class="section">
-                <div class="title">
-                    Keywords
-                </div>
-                <div class="flex-container">
-                    <div class="flex-member" *ngFor="let keyword of keywords.keywords">
-                        <div>
-                            {{keyword.name}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="section">
-                <div class="title">
-                    Videos
-                </div>
-                <div class="flex-container">
-                    <div class="flex-member" *ngFor="let video of videos.results">
-                        <div class="inner-section">
-                            <span class="bold">Video Name: </span>
-                            <span class="text"> {{video.name}} </span>
-                        </div>
-                        <div class="inner-section">
-                            <span class="bold">Video Site: </span>
-                            <span class="text"> {{video.site}} </span>
-                        </div>
-    
-                    </div>
-                </div>
-            </div> -->
-
-
     </div>
 </div>

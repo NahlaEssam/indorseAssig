@@ -28,7 +28,7 @@
                 Cast Members
             </div>
             <div class="flex-container">
-                <div class="flex-member" *ngFor="let member of credit.cast" [routerLink]="'/actor/'+member.id">
+                <div class="flex-member pointer" *ngFor="let member of credit.cast" [routerLink]="'/actor/'+member.id">
                     <div class="member-img">
                         <img class="member-img" [src]="member.profile_path?'https://image.tmdb.org/t/p/w500'+member.profile_path:''" />
                     </div>

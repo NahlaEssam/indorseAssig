@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActorResponse } from '../../shared/models/actor';
 import { ActorService } from 'src/app/shared/services/actor/actor.service';
 import { ErrorService } from 'src/app/shared/services/error/error.service';
@@ -7,7 +7,7 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   templateUrl: './actor-container.component.html',
   styleUrls: ['./actor-container.component.scss']
 })
-export class ActorContainerComponent implements OnInit {
+export class ActorContainerComponent implements OnInit, OnDestroy {
 
   page = 1;
   actors: ActorResponse;
@@ -15,6 +15,7 @@ export class ActorContainerComponent implements OnInit {
   enableShowMore = true;
   append = true;
   searchText = '';
+  serviceCall: any;
   constructor(public actorService: ActorService , public errorService: ErrorService) {
     this.search();
   }
@@ -32,14 +33,14 @@ export class ActorContainerComponent implements OnInit {
   search() {
     const searchText = this.searchText;
     if (searchText) {
-      this.actorService.searchActors(this.page, searchText).subscribe(res => {
+     this.serviceCall = this.actorService.searchActors(this.page, searchText).subscribe(res => {
         this.successCallback(res);
       }, error => {
         this.errorCallback(error);
       });
     } else {
 
-      this.actorService.getPopularActors(this.page).subscribe(res => {
+      this.serviceCall =  this.actorService.getPopularActors(this.page).subscribe(res => {
         this.successCallback(res);
       }, error => {
         this.errorCallback(error);
@@ -73,5 +74,7 @@ export class ActorContainerComponent implements OnInit {
     this.errorService.error.emit(error);
   }
 
-
+  ngOnDestroy() {
+    this.serviceCall.unsubscribe();
+  }
 }

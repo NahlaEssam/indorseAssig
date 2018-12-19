@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import { MoviesResponse } from '../../shared/models/movie';
 import { ErrorService } from 'src/app/shared/services/error/error.service';
@@ -8,7 +8,7 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   templateUrl: './movie-container.component.html',
   styleUrls: ['./movie-container.component.scss']
 })
-export class MovieContainerComponent implements OnInit {
+export class MovieContainerComponent implements OnInit, OnDestroy {
 
   page = 1;
   movies: MoviesResponse;
@@ -16,6 +16,7 @@ export class MovieContainerComponent implements OnInit {
   enableShowMore = true;
   append = true;
   searchText = '';
+  serviceCall: any;
   constructor(public movieService: MovieService, public errorService: ErrorService) {
     this.search();
   }
@@ -38,21 +39,21 @@ export class MovieContainerComponent implements OnInit {
   search() {
     const searchText = this.searchText;
     if (searchText) {
-      this.movieService.searchMovies(this.page, searchText).subscribe(res => {
+      this.serviceCall = this.movieService.searchMovies(this.page, searchText).subscribe(res => {
         this.successCallback(res);
       }, error => {
         this.errorCallback(error);
       });
     } else {
       if (this.trending) {
-        this.movieService.getTrendingMovies().subscribe(res => {
+        this.serviceCall = this.movieService.getTrendingMovies().subscribe(res => {
           this.successCallback(res);
 
         }, error => {
           this.errorCallback(error);
         });
       } else {
-        this.movieService.getPopularMovies(this.page).subscribe(res => {
+        this.serviceCall = this.movieService.getPopularMovies(this.page).subscribe(res => {
           this.successCallback(res);
         }, error => {
           this.errorCallback(error);
@@ -85,6 +86,10 @@ export class MovieContainerComponent implements OnInit {
 
   errorCallback(error: any) {
     this.errorService.error.emit(error);
+  }
+
+  ngOnDestroy() {
+    this.serviceCall.unsubscribe();
   }
 
 }
